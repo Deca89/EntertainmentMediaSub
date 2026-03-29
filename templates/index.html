@@ -19,6 +19,12 @@
   <p>
     Olet kirjautunut nimellä {{ session.username }}
   </p>
+  <h2>Seurattavat kohteet</h2>
+    <ul>
+        {% for item in items %}
+        <li><a href="item/{{ item.id }}">{{ item.title }}</a></li>
+        {% endfor %}
+    </ul>
   {% endif %}
   {% include "footer.html" %}
 </body>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{  item.title }}</title>
+</head>
+
+<body>
+  <h1>{{  item.title }}</h1>
+  <p>
+    Linkki: {{ item.link}}
+  </p>
+  <p>
+    Genre: {{ item.media_type}}
+  </p>
+  <p>
+    Kuvaus: {{ item.descriptions}}
+  </p>
+  <p>
+    Lisääjä: {{ item.username}}
+  </p>
+  {% include "footer.html" %}
+</body>
+
+</html>
