@@ -18,7 +18,7 @@
   {% endwith %}
   {% if session.user_id == item.user_id %}
   <p style="color: red;">
-    <li><a href="delete_item/{{ item.id }}">Poista</a></li>
+    <li><a href="/remove_item/{{ item.id }}">Poista</a></li>
   </p>
   <p style="color: blue;">
     <li><a href="/edit_item/{{ item.id }}">Muokkaa</a></li>
