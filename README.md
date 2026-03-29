@@ -11,3 +11,13 @@ Projektin tarkoituksena on luoda ohjelma, johon voidaan lisätä seurattavia med
 * Sovelluksessa on käyttäjäsivut, jotka näyttävät tilastoja ja käyttäjän lisäämät/seuraamat mediat.
 * Käyttäjä pystyy valitsemaan ilmoitukselle yhden tai useamman luokittelun (esim. media tyyppi, genre).
 * Käyttäjä pystyy kommentoimaan medioita - mielipide/kehu/haukku.
+
+
+Windows komentoja (venvissä):
+
+Käynnistä appi:
+flask --app app:app run
+
+Tietokannan luonti:
+C:\sqlite\sqlite3.exe database.db < schema.sql
+Tässä polku -> polku missä sqlite3.exe sijaitsee

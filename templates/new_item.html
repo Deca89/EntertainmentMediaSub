@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Uusi seurattava kohde</title>
+</head>
+
+<body>
+  <h1>Uusi seurattava kohde</h1>
+  {% if error %}
+  <p style="color: red;">
+    {{ error }}
+  </p>
+  {% endif %}
+  {% if message %}
+  <p style="color: green;">
+    {{ message }}
+  </p>
+  {% endif %}
+  <form action="/create_item" method="post">
+    <p>
+      Otsikko: <br />
+      <input type="text" name="title" />
+    </p>
+    <p>
+      Osoite: <br />
+      <input type="text" name="link" />
+    </p>
+    <p>
+      Media tyyppi: <br />
+      <input type="radio" name="media_type" value="1" /> TV-sarja
+      <input type="radio" name="media_type" value="2" /> Manga
+      <input type="radio" name="media_type" value="3" /> Anime
+      <input type="radio" name="media_type" value="4" /> LN
+    </p>
+    <p>Kuvaus: <br />
+      <textarea name="descriptions" rows="3" cols="50"></textarea>
+    </p>
+    <input type="submit" value="Luo seurattava kohde" />
+  </form>
+  {% include "footer.html" %}
+</body>
+
+</html>

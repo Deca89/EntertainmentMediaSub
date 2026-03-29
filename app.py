@@ -16,8 +16,8 @@ def index():
 def register():
     return render_template("register.html")
 
-@app.route("/create", methods=["POST"])
-def create():
+@app.route("/create_user", methods=["POST"])
+def create_user():
     username = request.form["username"]
     password1 = request.form["password1"]
     password2 = request.form["password2"]
@@ -42,20 +42,44 @@ def login():
         username = request.form["username"]
         password = request.form["password"]
 
-        result = db.query("SELECT password_hash FROM users WHERE username = ?", [username])
+        result = db.query("SELECT id, password_hash FROM users WHERE username = ?", [username])
         
         if not result:
             return render_template("login.html", error="VIRHE: väärä tunnus tai salasana")
+        
+        result = result[0]
 
-        password_hash = result[0][0]
+        user_id = result["id"]
+        password_hash = result["password_hash"]
+        
 
         if not check_password_hash(password_hash, password):
             return render_template("login.html", error="VIRHE: väärä tunnus tai salasana")
         else:
             session["username"] = username
+            session["user_id"] = user_id
             return redirect("/")
 
 @app.route("/logout")
 def logout():
     del session["username"]
+    del session["user_id"]
     return redirect("/")
+
+@app.route("/new_item")
+def new_item():
+    return render_template("new_item.html")
+
+@app.route("/create_item", methods=["POST"])
+def create_item():
+    title = request.form["title"]
+    link = request.form["link"]
+    media_type = request.form["media_type"]
+    descriptions = request.form["descriptions"]
+    user_id = session["user_id"]
+
+    sql = """INSERT INTO items (title, link, media_type, descriptions, user_id)
+             VALUES (?, ?, ?, ?, ?)"""
+    db.execute(sql, [title, link, media_type, descriptions, user_id])
+    
+    return render_template("index.html", message="Seurattava kohde lisätty")
