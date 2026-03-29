@@ -1,6 +1,6 @@
 import sqlite3
 from flask import Flask
-from flask import redirect, render_template, request, request, session
+from flask import flash, redirect, render_template, request, request, session
 from werkzeug.security import generate_password_hash, check_password_hash
 import config
 import db
@@ -88,3 +88,22 @@ def create_item():
     items.add_item(title, link, media_type, descriptions, user_id)
 
     return render_template("index.html", message="Seurattava kohde lisätty")
+
+@app.route("/edit_item/<int:item_id>")
+def edit_item(item_id):
+    item = items.get_item(item_id)
+    return render_template("edit_item.html", item=item)
+
+@app.route("/update_item", methods=["POST"])
+def update_item():
+    item_id = request.form["item_id"]
+    title = request.form["title"]
+    link = request.form["link"]
+    media_type = request.form["media_type"]
+    descriptions = request.form["descriptions"]
+    user_id = session["user_id"]
+
+    items.update_item(item_id, title, link, media_type, descriptions)
+
+    flash("Kohde päivitetty onnistuneesti")
+    return redirect("/item/" + str(item_id))

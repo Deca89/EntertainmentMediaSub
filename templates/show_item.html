@@ -7,11 +7,35 @@
 
 <body>
   <h1>{{  item.title }}</h1>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for message in messages %}
+        <p style="color: green;">
+          {{ message }}
+        </p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+  {% if session.user_id == item.user_id %}
+  <p style="color: red;">
+    <li><a href="delete_item/{{ item.id }}">Poista</a></li>
+  </p>
+  <p style="color: blue;">
+    <li><a href="/edit_item/{{ item.id }}">Muokkaa</a></li>
+  </p>
+  {% endif %}
   <p>
     Linkki: {{ item.link}}
   </p>
   <p>
-    Genre: {{ item.media_type}}
+    Genre: {{
+    {
+      "1" : "TV-sarja",
+      "2" : "Manga",
+      "3" : "Anime",
+      "4" : "LN"
+    }.get(item.media_type, "Tuntematon")
+  }}
   </p>
   <p>
     Kuvaus: {{ item.descriptions}}
