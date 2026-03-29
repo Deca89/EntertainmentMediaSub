@@ -1,0 +1,42 @@
+<footer>
+  <div class="footer-links">
+    
+    <a href="/">Main Page</a>
+
+    {% if 'username' in session %}
+        <a href="/logout">Logout</a>
+    {% else %}
+        <a href="/login">Login</a>
+        <a href="/register">Register</a>
+    {% endif %}
+
+  </div>
+</footer>
+
+<style>
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 10px 0;
+    border-top: 1px solid #ccc;
+  }
+
+  .footer-links a {
+    margin: 0 12px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+  }
+
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+
+  .welcome {
+    margin-right: 10px;
+    color: #555;
+  }
+</style>

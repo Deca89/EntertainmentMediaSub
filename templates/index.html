@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>EntertainmentMediaSub</title>
+</head>
+
+<body>
+  <h1>EntertainmentMediaSub</h1>
+  <p>
+    Tervetuloa <b>Entertainment Media Sub:iin</b>!
+  </p>
+  {% if session.username %}
+  <p>
+    Olet kirjautunut nimellä {{ session.username }}
+  </p>
+  {% endif %}
+  {% include "footer.html" %}
+</body>
+
+</html>
