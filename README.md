@@ -12,6 +12,40 @@ Projektin tarkoituksena on luoda ohjelma, johon voidaan lisätä seurattavia med
 * Käyttäjä pystyy valitsemaan ilmoitukselle yhden tai useamman luokittelun (esim. media tyyppi, genre).
 * Käyttäjä pystyy kommentoimaan medioita - mielipide/kehu/haukku.
 
+Tunnettuja korjattavia: viestejä voitaisiin selkeyttää.
+Sivustoa paremman näköiseksi.
+Haussa tällä hetkellä jos genre valittuna ei tätä voida poistaa.
+Tagit mukaan ja niihin funktioita.
+Genren lisäys?
+
+Sovelluksen käyttö:
+Lataa repo palvelimelle (esim git clone https://github.com/Deca89/EntertainmentMediaSub.git)
+
+Oletetaan tällä hetkellä käyttäjät kurssilaisiksi.
+
+Repon pääkansion sisällä:
+
+Suositellaan venv käyttöä.
+
+$ pip install flask
+
+Luo tietokanta. Riippuen OS esim:
+
+C:\sqlite\sqlite3.exe database.db < schema.sql
+Tässä polku -> polku missä sqlite3.exe sijaitsee
+
+TAI
+
+sqlite3 database.db
+
+Käynnistä sovellus esim:
+
+flask run
+
+TAI
+
+flask --app app:app run
+
 
 Windows komentoja (venvissä):
 
