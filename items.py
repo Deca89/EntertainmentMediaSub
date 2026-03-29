@@ -34,3 +34,26 @@ def remove_item(item_id):
     sql = "DELETE FROM items WHERE id = ?"
     db.execute(sql, [item_id])
 
+def find_items(query, media_type):
+    sql = """ SELECT id, title
+              FROM items
+              WHERE (title LIKE ? OR descriptions LIKE ?)
+                AND media_type LIKE ?
+              ORDER BY id DESC"""
+    return db.query(sql, ["%" + query + "%", "%" + query + "%", media_type])
+
+def find_items_word(query):
+    sql = """ SELECT id, title
+              FROM items
+              WHERE title LIKE ? OR descriptions LIKE ?
+              ORDER BY id DESC"""
+    return db.query(sql, ["%" + query + "%", "%" + query + "%"])
+    
+
+def find_items_genre(media_type):
+    sql = """ SELECT id, title
+              FROM items
+              WHERE media_type = ?
+              ORDER BY id DESC"""
+    return db.query(sql, [media_type])
+

@@ -124,3 +124,23 @@ def update_item():
 
     flash("Kohde päivitetty onnistuneesti")
     return redirect("/item/" + str(item_id))
+
+@app.route("/find_item")
+def find_item():
+    query = request.args.get("query")
+    media_type = request.args.get("media_type")
+    if query and media_type:
+        results = items.find_items(query, media_type)
+    elif query:
+        media_type = ""
+        results = items.find_items_word(query)
+    elif media_type:
+        query = ""
+        results = items.find_items_genre(media_type)
+    else:
+        query = ""
+        media_type = ""
+        results = []
+    print(query) # tyhjä tai syöte
+    print(media_type) # None tai numero
+    return render_template("find_item.html", query=query, media_type=media_type, results=results)
