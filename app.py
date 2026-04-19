@@ -1,6 +1,6 @@
 import sqlite3
 from flask import Flask
-from flask import flash, redirect, render_template, request, request, session
+from flask import abort, flash, redirect, render_template, request, request, session
 from werkzeug.security import generate_password_hash, check_password_hash
 import config
 import db
@@ -13,11 +13,6 @@ app.secret_key = config.secret_key
 def index():
     all_items = items.get_items()
     return render_template("index.html", items=all_items)
-
-@app.route("/item/<int:item_id>")
-def show_item(item_id):
-    item = items.get_item(item_id)
-    return render_template("show_item.html", item=item)
 
 @app.route("/register")
 def register():
@@ -90,15 +85,26 @@ def create_item():
     flash("Kohde luotu onnistuneesti")
     return redirect("/")
 
+@app.route("/item/<int:item_id>")
+def show_item(item_id):
+    item = items.get_item(item_id)
+    return render_template("show_item.html", item=item)
+
 @app.route("/edit_item/<int:item_id>")
 def edit_item(item_id):
     item = items.get_item(item_id)
+    if item["user_id"] != session["user_id"]:
+        abort(403)
     return render_template("edit_item.html", item=item)
 
 @app.route("/remove_item/<int:item_id>", methods=["GET", "POST"])
 def remove_item(item_id):
+    item = items.get_item(item_id)
+
+    if item["user_id"] != session["user_id"]:
+        abort(403)
+
     if request.method == "GET":
-        item = items.get_item(item_id)
         return render_template("remove_item.html", item=item)
 
     if request.method == "POST":
@@ -114,6 +120,9 @@ def remove_item(item_id):
 @app.route("/update_item", methods=["POST"])
 def update_item():
     item_id = request.form["item_id"]
+    item = items.get_item(item_id)
+    if item["user_id"] != session["user_id"]:
+        abort(403)
     title = request.form["title"]
     link = request.form["link"]
     media_type = request.form["media_type"]
