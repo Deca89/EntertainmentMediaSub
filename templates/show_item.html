@@ -52,7 +52,7 @@
   {% if session.user_id %}
   <h3>Lisää kommentti</h3>
   <form action="/create_comment" method="post">
-    <p>Kuvaus: <br />
+    <p>Kommentti: <br />
       <textarea name="comment" rows="8" cols="50" maxlength="500" required></textarea>
     </p>
     <input type="hidden" name="item_id" value="{{ item.id }}">
