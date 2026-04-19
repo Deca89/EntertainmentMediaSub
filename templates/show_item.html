@@ -27,22 +27,39 @@
   <p>
     Linkki: {{ item.link}}
   </p>
-  <p>
-    Genre: {{
-    {
-      "1" : "TV-sarja",
-      "2" : "Manga",
-      "3" : "Anime",
-      "4" : "LN"
-    }.get(item.media_type, "Tuntematon")
-  }}
-  </p>
+  {% if classes %}
+    {% for class in classes %}
+    <li>{{ class.title}}: {{ class.value }}</li>
+    {% endfor %}
+  {% endif %}
   <p>
     Kuvaus: {{ item.descriptions}}
   </p>
   <p>
-    Lisääjä: {{ item.username}}
+    Lisääjä: <a href="/user/{{ item.user_id }}">{{ item.username}}</a>
   </p>
+  <h3>Kommentit</h3>
+  <ul>
+    {% for comment in comments %}
+    <p>
+      {{ comment.comment }}
+    </p>
+    <p>
+      <a href="/user/{{ comment.user_id }}">{{ comment.username }}</a>
+    </p>
+    {% endfor %}
+  </ul>
+  {% if session.user_id %}
+  <h3>Lisää kommentti</h3>
+  <form action="/create_comment" method="post">
+    <p>Kuvaus: <br />
+      <textarea name="comment" rows="8" cols="50" maxlength="500" required></textarea>
+    </p>
+    <input type="hidden" name="item_id" value="{{ item.id }}">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}" />
+    <input type="submit" value="Kommentoi" />
+  </form>
+  {% endif %}
   {% include "footer.html" %}
 </body>
 

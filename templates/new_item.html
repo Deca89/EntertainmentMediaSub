@@ -26,16 +26,21 @@
       Osoite: <br />
       <input type="text" name="link" />
     </p>
-    <p>
-      Media tyyppi: <br />
-      <input type="radio" name="media_type" value="1" required/> TV-sarja
-      <input type="radio" name="media_type" value="2" /> Manga
-      <input type="radio" name="media_type" value="3" /> Anime
-      <input type="radio" name="media_type" value="4" /> LN
-    </p>
+    {% for class in classes %}
+  <p>
+    <label for="class{{ class }}">{{ class }}</label>: <br />
+    <select name="classes" id="class{{ class }}">
+      <option value="">(valitse)</option>
+    {% for option in classes[class] %}
+      <option value="{{ class }}:{{ option }}">{{ option }}</option>
+    {% endfor %}
+    </select>
+  </p>
+  {% endfor %}
     <p>Kuvaus: <br />
       <textarea name="descriptions" rows="8" cols="50" maxlength="1000" required></textarea>
     </p>
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}" />
     <input type="submit" value="Luo seurattava kohde" />
   </form>
   {% include "footer.html" %}

@@ -14,6 +14,7 @@
     <p>
       Haluatko varmasti poistaa seurattavan kohteen sovelluksesta?  
     </p>
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}" />
     <input type="submit" name="remove" value="Poista kohde" />
     <input type="submit" name="back" value="Palaa takaisin" />
   </form>

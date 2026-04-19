@@ -16,21 +16,26 @@
       Osoite: <br />
       <input type="text" name="link" value="{{ item.link }}"/>
     </p>
-    <p>
-      Media tyyppi: <br />
-      <input type="radio" name="media_type" value="1"
-        {% if item.media_type == "1" %}checked{% endif %} /> TV-sarja
-      <input type="radio" name="media_type" value="2"
-        {% if item.media_type == "2" %}checked{% endif %} /> Manga
-      <input type="radio" name="media_type" value="3"
-        {% if item.media_type == "3" %}checked{% endif %} /> Anime
-      <input type="radio" name="media_type" value="4"
-        {% if item.media_type == "4" %}checked{% endif %} /> LN
-    </p>
+    {% for class in all_classes %}
+  <p>
+    <label for="class{{ class }}">{{ class }}</a>: <br />
+    <select name="classes" id="class{{ class}}">
+      <option value="">(valitse)</option>
+    {% for option in all_classes[class] %}
+      {% if classes[class] == option %}
+      <option value="{{ class }}:{{ option }}" selected>{{ option }}</option>
+      {% else %}
+      <option value="{{ class }}:{{ option }}">{{ option }}</option>
+      {% endif %}
+    {% endfor %}
+    </select>
+  </p>
+  {% endfor %}
     <p>Kuvaus: <br />
-      <textarea name="descriptions" rows="8" cols="50" maxlength="1000">{{ item.descriptions }} required</textarea>
+      <textarea name="descriptions" rows="8" cols="50" maxlength="1000" required>{{ item.descriptions }}</textarea>
     </p>
     <input type="hidden" name="item_id" value="{{ item.id }}" />
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}" />
     <input type="submit" value="Päivitä kohde" />
   </form>
   {% include "footer.html" %}

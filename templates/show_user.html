@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Käyttäjä: {{  user.username }}</title>
+</head>
+
+<body>
+  <h1>Käyttäjä: {{  user.username }}</h1>
+  <p>
+    Käyttäjällä on yhteensä {{ items | count }} lisättyä kohdetta.
+  </p>
+  <h2>Kohteet:</h2>
+    <ul>
+        {% for item in items %}
+        <li><a href="/item/{{ item.id }}">{{ item.title }}</a></li>
+        {% endfor %}
+    </ul>
+  {% include "footer.html" %}
+</body>
+
+</html>

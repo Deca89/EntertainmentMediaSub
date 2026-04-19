@@ -32,11 +32,13 @@ $ pip install flask
 Luo tietokanta. Riippuen OS esim:
 
 C:\sqlite\sqlite3.exe database.db < schema.sql
+C:\sqlite\sqlite3.exe database.db < init.sql
 Tässä polku -> polku missä sqlite3.exe sijaitsee
 
 TAI
 
-sqlite3 database.db
+sqlite3 database.db < schema.sql
+sqlite3 database.db < init.sql
 
 Käynnistä sovellus esim:
 
@@ -54,4 +56,5 @@ flask --app app:app run
 
 Tietokannan luonti:
 C:\sqlite\sqlite3.exe database.db < schema.sql
+C:\sqlite\sqlite3.exe database.db < init.sql
 Tässä polku -> polku missä sqlite3.exe sijaitsee

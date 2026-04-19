@@ -11,21 +11,10 @@
     <p>
       Hakusana: <input type="text" name="query" value="{{ query }}"/>
     </p>
-    <p>
-      Media tyyppi: <br />
-      <input type="radio" name="media_type" value="1"
-        {% if media_type == "1" %}checked{% endif %} /> TV-sarja
-      <input type="radio" name="media_type" value="2"
-        {% if media_type == "2" %}checked{% endif %} /> Manga
-      <input type="radio" name="media_type" value="3"
-        {% if media_type == "3" %}checked{% endif %} /> Anime
-      <input type="radio" name="media_type" value="4"
-        {% if media_type == "4" %}checked{% endif %} /> LN
-    </p>
     <input type="submit" value="Hae" />
   </form>
 
-  {% if query or media_type %}
+  {% if query %}
   <h2>Tulokset</h2>
     <ul>
         {% for result in results %}
