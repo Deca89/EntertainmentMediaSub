@@ -20,7 +20,7 @@
   <form action="/create_item" method="post">
     <p>
       Otsikko: <br />
-      <input type="text" name="title" />
+      <input type="text" name="title" maxlength="100" required/>
     </p>
     <p>
       Osoite: <br />
@@ -28,13 +28,13 @@
     </p>
     <p>
       Media tyyppi: <br />
-      <input type="radio" name="media_type" value="1" /> TV-sarja
+      <input type="radio" name="media_type" value="1" required/> TV-sarja
       <input type="radio" name="media_type" value="2" /> Manga
       <input type="radio" name="media_type" value="3" /> Anime
       <input type="radio" name="media_type" value="4" /> LN
     </p>
     <p>Kuvaus: <br />
-      <textarea name="descriptions" rows="3" cols="50"></textarea>
+      <textarea name="descriptions" rows="8" cols="50" maxlength="1000" required></textarea>
     </p>
     <input type="submit" value="Luo seurattava kohde" />
   </form>

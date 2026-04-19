@@ -25,10 +25,14 @@ def register():
 @app.route("/create_user", methods=["POST"])
 def create_user():
     username = request.form["username"]
+    if not username:
+        abort(403)
     password1 = request.form["password1"]
     password2 = request.form["password2"]
+    if not password1:
+        return render_template("register.html", error="VIRHE: Salasana ei voi olal tyhjä")
     if password1 != password2:
-        return render_template("register.html", error="VIRHE: salasanat eivät ole samat")
+        return render_template("register.html", error="VIRHE: Salasanat eivät ole samat")
     password_hash = generate_password_hash(password1)
 
     try:
@@ -82,9 +86,13 @@ def new_item():
 def create_item():
     require_login()
     title = request.form["title"]
+    if not title or len(title) > 100:
+        abort(403)
     link = request.form["link"]
     media_type = request.form["media_type"]
     descriptions = request.form["descriptions"]
+    if not descriptions or len(descriptions) > 1000:
+        abort(403)
     user_id = session["user_id"]
 
     items.add_item(title, link, media_type, descriptions, user_id)
@@ -142,9 +150,13 @@ def update_item():
     if item["user_id"] != session["user_id"]:
         abort(403)
     title = request.form["title"]
+    if not title or len(title) > 100:
+        abort(403)
     link = request.form["link"]
     media_type = request.form["media_type"]
     descriptions = request.form["descriptions"]
+    if not descriptions or len(descriptions) > 1000:
+        abort(403)
     user_id = session["user_id"]
 
     items.update_item(item_id, title, link, media_type, descriptions)
