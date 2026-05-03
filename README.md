@@ -4,19 +4,18 @@ Projektin tarkoituksena on luoda ohjelma, johon voidaan lisätä seurattavia med
 
 * Käyttäjä pystyy luomaan tunnuksen ja kirjautumaan sisään sovellukseen.
 * Käyttäjä pystyy lisäämään, muokkaamaan ja poistamaan seurattavia medioita.
-* Käyttäjä pystyy lisäämään median perustiedot - kuvan/genret/tagit.
+* Käyttäjä pystyy lisäämään median perustiedot - kuvan/genret.
 * Käyttäjä näkee sovellukseen lisätyt kohteet.
-* Käyttäjä voi lisätä myös itselleen seurattavaksi muiden lisäämiä medioita.
-* Käyttäjä pystyy etsimään medioita hakusanalla/tagillä/genrellä.
-* Sovelluksessa on käyttäjäsivut, jotka näyttävät tilastoja ja käyttäjän lisäämät/seuraamat mediat.
+* Käyttäjä pystyy etsimään medioita hakusanalla.
+* Sovelluksessa on käyttäjäsivut, jotka näyttävät tilastoja ja käyttäjän lisäämät mediat.
 * Käyttäjä pystyy valitsemaan ilmoitukselle yhden tai useamman luokittelun (esim. media tyyppi, genre).
 * Käyttäjä pystyy kommentoimaan medioita - mielipide/kehu/haukku.
 
-Tunnettuja korjattavia: viestejä voitaisiin selkeyttää.
+Jatkokehitysideoita: 
 Sivustoa paremman näköiseksi.
-Haussa tällä hetkellä jos genre valittuna ei tätä voida poistaa.
 Tagit mukaan ja niihin funktioita.
-Genren lisäys?
+Genren lisäys hakuun
+Käyttäjä voi lisätä myös itselleen seurattavaksi muiden lisäämiä medioita.
 
 Sovelluksen käyttö:
 Lataa repo palvelimelle (esim git clone https://github.com/Deca89/EntertainmentMediaSub.git)
