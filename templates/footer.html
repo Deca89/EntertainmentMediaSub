@@ -7,6 +7,7 @@
         <a href="/logout">Kirjaudu ulos</a>
         <a href="/new_item">Lisää uusi kohde</a>
         <a href="/find_item">Hae kohteita</a>
+        <a href="/user/{{ session.user_id }}">Käyttäjäsivu</a></li>
     {% else %}
         <a href="/login">Kirjaudu sisään</a>
         <a href="/register">Rekisteröidy</a>

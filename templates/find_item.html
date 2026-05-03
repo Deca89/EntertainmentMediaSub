@@ -19,11 +19,24 @@
     <ul>
         {% for result in results %}
         <li><a href="item/{{ result.id }}">{{ result.title }}</a></li>
+        {% else %}
+          <p>Ei tuloksia</p>
         {% endfor %}
     </ul>
   {% endif %}
 
   {% include "footer.html" %}
 </body>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
 
 </html>

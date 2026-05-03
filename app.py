@@ -44,7 +44,7 @@ def create_user():
     user_created = users.create_user(username, password1)
 
     if user_created:
-        return render_template("register.html", message="Tunnus luotu")
+        return render_template("login.html", message="Tunnus luotu")
     else:
         return render_template("register.html", error="VIRHE: tunnus on jo varattu")
 

@@ -11,6 +11,11 @@
     {{ error }}
   </p>
   {% endif %}
+  {% if message %}
+  <p style="color: green;">
+    {{ message }}
+  </p>
+  {% endif %}
   {% if session.username %}
   <p>
     Olet kirjautunut nimellä {{ session.username }}
@@ -33,5 +38,16 @@
   {% endif %}
   {% include "footer.html" %}
 </body>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
 
 </html>
